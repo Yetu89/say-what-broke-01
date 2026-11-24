@@ -2,7 +2,9 @@
 // https://make.fun/bounty/u-po-pu-say-what-actually-broke-a2c153b5
 // Grok (grok-4.3) ranking: winner B scored 9/10 (D 8, A 7, C 5) —
 // self-referential disk failure from logging errors like this one is
-// the sharpest, most repeatable brutal loop.
+// the sharpest, most repeatable brutal loop. The joke is the loop itself:
+// every copy of this error made the next one more likely, until the disk
+// that stored the errors had no room left for the file it was logging about.
 
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
