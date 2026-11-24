@@ -5,6 +5,14 @@
 // the sharpest, most repeatable brutal loop. The joke is the loop itself:
 // every copy of this error made the next one more likely, until the disk
 // that stored the errors had no room left for the file it was logging about.
+// Why this line works: the error explains itself — the disk filled up
+// because the system kept every error, including this one, so logging the
+// failure caused the next failure. A self-referential loop, not a random crash.
+// Gate rules: single line, 1..200 chars, no leading/trailing whitespace,
+// no control characters, non-empty and not whitespace-only.
+// Round-trip check: main() writes entry.txt then reads it back and throws
+// unless the bytes read match TEXT exactly, so a truncated or mangled write
+// can never pass silently.
 
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
